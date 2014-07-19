@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Test1</string>
+    <string name="menu_settings">Settings</string>
+    <string name="title_activity_main">MainActivity</string>
+    <string name="edit_message">Enter a message</string>
+    <string name="button_send">Search</string>
+    <string name="title_activity_imdbsearch_result">TMDBSearchResultActivity</string>
+    <string name="title_activity_now__viewing">Now_Viewing</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="image_of_movie">Image</string>
+    <string name="title_activity_image_download">ImageDownload</string>
+    <string name="title_activity_display__with__image">Display_With_Image</string>
+
+</resources>
