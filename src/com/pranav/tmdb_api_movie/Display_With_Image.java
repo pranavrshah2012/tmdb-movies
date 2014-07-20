@@ -176,12 +176,7 @@ class ImageDownloading extends AsyncTask<HashMap<String, Object>, Void, HashMap<
        displayDownloadedImages(result);
      }
 	
-	/*migration issue
-	 public boolean onCreateOptionsMenu(Menu menu) {
-	        getMenuInflater().inflate(R.menu.activity_main, menu);
-	        return true;
-	    }
-	*/
+
 
 	
  }

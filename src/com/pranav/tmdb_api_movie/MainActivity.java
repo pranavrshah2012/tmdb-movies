@@ -169,12 +169,7 @@ public class MainActivity extends Activity {
         }
     }
 
-    /*migration issue
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.activity_main, menu);
-        return true;
-    }*/
+   
     
     /**
      * Fires an intent to the {@link TMDBSearchResultActivity} with the query.
