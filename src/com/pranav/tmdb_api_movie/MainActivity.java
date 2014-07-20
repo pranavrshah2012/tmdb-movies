@@ -77,34 +77,9 @@ public class MainActivity extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-//        setContentView(R.layout.tempmain);
-        
-        /* commented at moment
-        //for images
-        // URL to the JSON data
-        //private final
-        
-        String TMDB_API_KEY = "c47afb8e8b27906bca710175d6e8ba68";
-        StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append("https://api.themoviedb.org/3/movie/now_playing");
-        stringBuilder.append("?api_key=" + TMDB_API_KEY);
-        
-        
-//        stringBuilder.append("&query=" + query);
-//        URL url = new URL(stringBuilder.toString());
 
-        strFinalUrl =stringBuilder.toString();
-        //
- 
-        // Creating a new non-ui thread task to download json data
-        DownloadTask downloadTask = new DownloadTask();
- 
-        // Starting the download process
-        downloadTask.execute(strFinalUrl);
- 
-        // Getting a reference to ListView of activity_main
-        mListView = (ListView) findViewById(R.id.View_movies);
-        */
+        
+      
     }
     
     //all added only view function eixsted.
