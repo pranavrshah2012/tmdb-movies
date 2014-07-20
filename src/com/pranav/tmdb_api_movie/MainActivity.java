@@ -50,8 +50,6 @@ public class MainActivity extends Activity {
 	String imgUrl;
 	String strFinalUrl;
 
-	
-
     public static final String EXTRA_MESSAGE = "";
     public static final String EXTRA_QUERY = "";
     ListView mListView;
@@ -59,76 +57,11 @@ public class MainActivity extends Activity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-
-        
+        setContentView(R.layout.activity_main);      
       
     }
     
-    //all added only view function eixsted.
-    private String downloadUrl(String strUrl) throws IOException{
-        String data = "";
-        InputStream iStream = null;
-        try{
-            URL url = new URL(strUrl);
- 
-            // Creating an http connection to communicate with url
-            HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
- 
-            // Connecting to url
-            urlConnection.connect();
- 
-            // Reading data from url
-            iStream = urlConnection.getInputStream();
- 
-            BufferedReader br = new BufferedReader(new InputStreamReader(iStream));
- 
-            StringBuffer sb  = new StringBuffer();
- 
-            String line = "";
-            while( ( line = br.readLine())  != null){
-                sb.append(line);
-            }
- 
-            data = sb.toString();
- 
-            br.close();
- 
-        }catch(Exception e){
-            Log.d("Exception while downloading url", e.toString());
-        }finally{
-            iStream.close();
-        }
- 
-        return data;
-    }
- 
-    /** AsyncTask to download json data */
-    private class DownloadTask extends AsyncTask<String, Integer, String>{
-        String data = null;
-        @Override
-        protected String doInBackground(String... url) {
-            try{
-                data = downloadUrl(strFinalUrl);
-            }catch(Exception e){
-                Log.d("Background Task",e.toString());
-            }
-            return data;
-        }
- 
-        @Override
-        protected void onPostExecute(String result) {
- 
-            // The parsing of the xml data is done in a non-ui thread
-            ListViewLoaderTask listViewLoaderTask = new ListViewLoaderTask();
- 
-            // Start parsing xml data
-            listViewLoaderTask.execute(result);
-        }
-    }
-
-   
-    
+     
     /**
      * Fires an intent to the {@link TMDBSearchResultActivity} with the query.
      * {@link TMDBSearchResultActivity} does all the downloading and rendering.
@@ -142,53 +75,7 @@ public class MainActivity extends Activity {
         String query = editText.getText().toString();
         intent.putExtra(EXTRA_QUERY, query);
         startActivity(intent);
-    }
-    
-    
-    
-    /** AsyncTask to parse json data and load ListView */
-    class ListViewLoaderTask extends AsyncTask<String, Void, SimpleAdapter>{
-
-       JSONObject jObject;
-       // Doing the parsing of xml data in a non-ui thread
-       @Override
-       protected SimpleAdapter doInBackground(String... strJson) {
-           try{
-               jObject = new JSONObject(strJson[0]);
-               parseJson movieJsonParser = new parseJson();
-               movieJsonParser.parse(jObject);
-           }catch(Exception e){
-               Log.d("JSON Exception1",e.toString());
-           }
-
-           // Instantiating json parser class
-           parseJson movieJsonParser = new parseJson();
-
-           // A list object to store the parsed countries list
-           List<HashMap<String, Object>> movies = null;
-
-           try{
-               // Getting the parsed data as a List construct
-               movies = movieJsonParser.parse(jObject);
-           }catch(Exception e){
-               Log.d("Exception",e.toString());
-           }
-
-           // Keys used in Hashmap
-           String[] from = { "title","poster","details"};
-
-           // Ids of views in listview_layout
-           int[] to = { R.id.name_of_movie,R.id.image_of_movie,R.id.movie_details};
-
-           // Instantiating an adapter to store each items
-           // R.layout.listview_layout defines the layout of each item
-           SimpleAdapter adapter = new SimpleAdapter(getBaseContext(), movies, R.layout.movielist_with_image, from, to);
-
-           return adapter;
-       }
-
-      
-   }
+    }    
     
 }
 
