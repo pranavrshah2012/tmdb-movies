@@ -49,24 +49,7 @@ import android.widget.SimpleAdapter;
 public class MainActivity extends Activity {
 	String imgUrl;
 	String strFinalUrl;
-	public void prepareImages (SimpleAdapter adapter){
-	  	  ListView listView = new ListView(this);
-		   listView.setAdapter(adapter);
 
-           for(int i=0;i<adapter.getCount();i++){
-               HashMap<String, Object> hm = (HashMap<String, Object>) adapter.getItem(i);
-               imgUrl = (String) hm.get("poster_path");
-               Display_With_Image outer = new Display_With_Image();
-               ImageDownloading imageLoaderTask = outer.new ImageDownloading();
-
-               HashMap<String, Object> hmDownload = new HashMap<String, Object>();
-               hm.put("poster_path",strFinalUrl);
-
-               // Starting ImageLoaderTask to download and populate image in the listview
-               imageLoaderTask.execute(hm);
-           }
-	  
-	  }
 	
 
     public static final String EXTRA_MESSAGE = "";
@@ -204,11 +187,7 @@ public class MainActivity extends Activity {
            return adapter;
        }
 
-       /** Invoked by the Android on "doInBackground" is executed */
-       @Override
-       protected void onPostExecute(SimpleAdapter adapter) {
-        prepareImages(adapter);
-       }
+      
    }
     
 }
