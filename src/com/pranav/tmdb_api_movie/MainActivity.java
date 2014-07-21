@@ -94,7 +94,8 @@ public class MainActivity extends Activity {
 
 	public void queryTMDB(View view) {
 		String query = editText.getText().toString();
-		if(query == "")
+		Log.d("query", "ee  "+query.length());
+		if(query.length()==0)
 			Toast.makeText(this, "Please enter keywords to search movie", Toast.LENGTH_LONG).show();
 		else{
 		Intent intent = new Intent(this, SearchActivity.class);
