@@ -19,21 +19,36 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="0.57"
+        android:layout_marginBottom="22dp"
+        android:background="#009ACD"
         android:onClick="queryTMDB"
-        android:text="@string/button_send" />
+        android:text="@string/button_send"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textColor="#fff"
+        android:textStyle="bold" />
 
     <Button
         android:id="@+id/now"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="0.58"
-        android:text="Now Playing" />
-    
-       <Button
+        android:layout_marginBottom="22dp"
+        android:background="#009ACD"
+        android:text="Now Playing"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textColor="#fff"
+        android:textStyle="bold" />
+
+    <Button
         android:id="@+id/toprated"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="0.58"
-        android:text="Top Rated" />
+        android:layout_marginBottom="22dp"
+        android:background="#009ACD"
+        android:text="Top Rated"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textColor="#fff"
+        android:textStyle="bold" />
 
 </LinearLayout>

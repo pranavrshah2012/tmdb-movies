@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
+import android.widget.Toast;
 //lazy 
 
 import android.os.Bundle;
@@ -52,26 +53,31 @@ public class MainActivity extends Activity {
 	public static final String EXTRA_MESSAGE = "";
 	public static final String EXTRA_QUERY = "";
 	ListView mListView;
+	EditText editText;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
-		
-		  Button nowPlayingMovieButton = (Button) findViewById(R.id.now);
-	      nowPlayingMovieButton.setOnClickListener(new OnClickListener() {            
-	           public void onClick(View v) {
-	           startActivity(new Intent(getApplicationContext(), Now_Viewing.class));
-	           }
-		     });
-	      
-	      Button topMoviesButton = (Button) findViewById(R.id.toprated);
-	      topMoviesButton.setOnClickListener(new OnClickListener() {            
-	           public void onClick(View v) {
-	           startActivity(new Intent(getApplicationContext(), TopRated.class));
-	           }
-		     });
-	      
+		editText = (EditText) findViewById(R.id.edit_message);
+
+		Button nowPlayingMovieButton = (Button) findViewById(R.id.now);
+		nowPlayingMovieButton.setOnClickListener(new OnClickListener() {
+			public void onClick(View v) {
+				editText.setText("");
+				startActivity(new Intent(getApplicationContext(),
+						Now_Viewing.class));
+			}
+		});
+
+		Button topMoviesButton = (Button) findViewById(R.id.toprated);
+		topMoviesButton.setOnClickListener(new OnClickListener() {
+			public void onClick(View v) {
+				editText.setText("");
+				startActivity(new Intent(getApplicationContext(),
+						TopRated.class));
+			}
+		});
 
 	}
 
@@ -87,18 +93,15 @@ public class MainActivity extends Activity {
 	 */
 
 	public void queryTMDB(View view) {
-		Intent intent = new Intent(this, SearchActivity.class);
-		// Intent intent = new Intent(this, Now_Viewing.class);
-//		Intent intent = new Intent(this, TopRated.class);
-
-		EditText editText = (EditText) findViewById(R.id.edit_message);
 		String query = editText.getText().toString();
+		if(query == "")
+			Toast.makeText(this, "Please enter keywords to search movie", Toast.LENGTH_LONG).show();
+		else{
+		Intent intent = new Intent(this, SearchActivity.class);
+
 		intent.putExtra(EXTRA_QUERY, query);
 		startActivity(intent);
+		}
 	}
-	
-
-	
-	
 
 }
