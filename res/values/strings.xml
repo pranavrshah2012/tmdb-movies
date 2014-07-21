@@ -16,5 +16,6 @@
     <string name="title_activity_detail__view">Detail_View</string>
     <string name="title_activity_detailed__view">Detailed_View</string>
     <string name="title_activity_top_rated">TopRated</string>
+    <string name="title_activity_up_coming">UpComingActivity</string>
 
 </resources>

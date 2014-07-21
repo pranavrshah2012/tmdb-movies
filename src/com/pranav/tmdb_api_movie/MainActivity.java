@@ -78,6 +78,15 @@ public class MainActivity extends Activity {
 						TopRated.class));
 			}
 		});
+		
+		Button upComingMoviesButton = (Button) findViewById(R.id.upcoming);
+		upComingMoviesButton.setOnClickListener(new OnClickListener() {
+			public void onClick(View v) {
+				editText.setText("");
+				startActivity(new Intent(getApplicationContext(),
+						UpComingActivity.class));
+			}
+		});
 
 	}
 
@@ -94,7 +103,6 @@ public class MainActivity extends Activity {
 
 	public void queryTMDB(View view) {
 		String query = editText.getText().toString();
-		Log.d("query", "ee  "+query.length());
 		if(query.length()==0)
 			Toast.makeText(this, "Please enter keywords to search movie", Toast.LENGTH_LONG).show();
 		else{

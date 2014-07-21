@@ -50,5 +50,17 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:textColor="#fff"
         android:textStyle="bold" />
+    
+    <Button
+        android:id="@+id/upcoming"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.58"
+        android:layout_marginBottom="22dp"
+        android:background="#009ACD"
+        android:text="Up Coming"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textColor="#fff"
+        android:textStyle="bold" />
 
 </LinearLayout>

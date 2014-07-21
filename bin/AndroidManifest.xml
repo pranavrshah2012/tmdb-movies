@@ -54,6 +54,10 @@
             android:name="com.pranav.tmdb_api_movie.TopRated"
             android:label="@string/title_activity_top_rated" >
         </activity>
+        <activity
+            android:name="com.pranav.tmdb_api_movie.UpComingActivity"
+            android:label="@string/title_activity_up_coming" >
+        </activity>
     </application>
 
 </manifest>

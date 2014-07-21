@@ -77,7 +77,7 @@ public class TopRated extends Activity {
 		ConnectivityManager connMgr = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
 		NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
 		if (networkInfo != null && networkInfo.isConnected()) {
-			new TMDBTop().execute();
+			new TMDBUpComing().execute();
 		} else {
 			TextView textView = new TextView(this);
 			textView.setText("No network connection.");
@@ -104,7 +104,7 @@ public class TopRated extends Activity {
 
 	}
 
-	private class TMDBTop extends AsyncTask {
+	public class TMDBUpComing extends AsyncTask {
 
 		private final String TMDB_API_KEY = "c47afb8e8b27906bca710175d6e8ba68";
 		private static final String DEBUG_TAG = "TMDBQueryManager";
@@ -113,7 +113,7 @@ public class TopRated extends Activity {
 		protected ArrayList<HashMap<String, String>> doInBackground(
 				Object... params) {
 			try {
-				return displayTopMovies();
+				return displayUpComingMovies();
 			} catch (IOException e) {
 				return null;
 			}
@@ -127,7 +127,7 @@ public class TopRated extends Activity {
 		/**
 		 * Searches IMDBs API for the given query
 		 */
-		public ArrayList<HashMap<String, String>> displayTopMovies()
+		public ArrayList<HashMap<String, String>> displayUpComingMovies()
 				throws IOException {
 			// Build URL
 			// https://api.themoviedb.org/3/movie/now_playing?api_key=c47afb8e8b27906bca710175d6e8ba68
@@ -161,7 +161,7 @@ public class TopRated extends Activity {
 						+ conn.getResponseMessage());
 
 				stream = conn.getInputStream();
-				return parseTopMovies(stringify(stream));
+				return parseUpComingMovies(stringify(stream));
 			} finally {
 				if (stream != null) {
 					stream.close();
@@ -169,7 +169,7 @@ public class TopRated extends Activity {
 			}
 		}
 
-		private ArrayList<HashMap<String, String>> parseTopMovies(String result) {
+		private ArrayList<HashMap<String, String>> parseUpComingMovies(String result) {
 			String streamAsString = result;
 			ArrayList<HashMap<String, String>> results = new ArrayList<HashMap<String, String>>();
 			try {
