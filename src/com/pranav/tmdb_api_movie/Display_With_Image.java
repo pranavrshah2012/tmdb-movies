@@ -1,5 +1,5 @@
+//useless file:P
 package com.pranav.tmdb_api_movie;
-
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -30,7 +30,6 @@ import org.json.JSONObject;
 
 //import com.pranav.R;
 import com.pranav.tmdb_api_movie.R;
-import com.pranav.tmdb_api_movie.MovieResult.Builder;
 
 //
 import java.io.BufferedReader;
@@ -62,6 +61,7 @@ import android.widget.SimpleAdapter;
 
 public class Display_With_Image extends Activity {
 
+	//not required function
 	public void displayDownloadedImages (HashMap<String, Object> result){
 	  	  // Getting the path to the downloaded image
 			ListView listView = new ListView (this);
@@ -94,16 +94,22 @@ public class Display_With_Image extends Activity {
         // Get the intent to get the query.
         Intent intent = getIntent();
         String query = intent.getStringExtra(MainActivity.EXTRA_QUERY);
-        
+       
+       /*
+        { 
         // Check if the NetworkConnection is active and connected.
         ConnectivityManager connMgr = (ConnectivityManager) 
                 getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
         if (networkInfo != null && networkInfo.isConnected()) {
-//            new ImageDownloading().execute(query);
+            new ImageDownloading().execute(query);
         } 
+    }//end added block*/
+        
     }
+  
     
+    /*  extra class
 class ImageDownloading extends AsyncTask<HashMap<String, Object>, Void, HashMap<String, Object>>{
 	public String imgUrl;
      @Override
@@ -176,10 +182,14 @@ class ImageDownloading extends AsyncTask<HashMap<String, Object>, Void, HashMap<
        displayDownloadedImages(result);
      }
 	
-
+	 public boolean onCreateOptionsMenu(Menu menu) {
+	        getMenuInflater().inflate(R.menu.activity_main, menu);
+	        return true;
+	    }
+	
 
 	
- }
+ }*/
 }
 
 

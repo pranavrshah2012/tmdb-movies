@@ -1,6 +1,5 @@
 package com.pranav.tmdb_api_movie;
 
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -34,16 +33,8 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import com.pranav.tmdb_api_movie.Detailed_View;
-import com.pranav.tmdb_api_movie.ImageLoader;
-import com.pranav.tmdb_api_movie.MovieResult;
-import com.pranav.tmdb_api_movie.Now_Viewing;
-import com.pranav.tmdb_api_movie.TMDBSearchResultActivity;
-import com.pranav.tmdb_api_movie.Now_Viewing.TMDBNow_View;
-import com.pranav.tmdb_api_movie.MainActivity;
-import com.pranav.tmdb_api_movie.Now_Viewing.LazyAdapter;
 import com.pranav.tmdb_api_movie.R;
-import com.pranav.tmdb_api_movie.MovieResult.Builder;
+import com.pranav.tmdb_api_movie.TMDBSearchResultActivity.LazyAdapter;
 
 public class Now_Viewing extends Activity {
 	final String KEY_TITLE = "title";
@@ -57,6 +48,7 @@ public class Now_Viewing extends Activity {
     
 	StringBuilder imageStringBuilder = new StringBuilder();
 
+    
     ListView list;
     LazyAdapter adapter;
 
@@ -141,7 +133,7 @@ public class Now_Viewing extends Activity {
 //         });
     }
     
-    public class TMDBNow_View extends AsyncTask {
+    private class TMDBNow_View extends AsyncTask {
         
         private final String TMDB_API_KEY = "c47afb8e8b27906bca710175d6e8ba68";
         private static final String DEBUG_TAG = "TMDBQueryManager";
@@ -271,13 +263,13 @@ public class LazyAdapter extends BaseAdapter {
     public View getView(final int position, View convertView, ViewGroup parent) {
         View vi=convertView;
         if(convertView==null)
-            vi = inflater.inflate(com.daginge.tmdbsearch.R.layout.movie2_result, null);
+            vi = inflater.inflate(com.pranav.tmdb_api_movie.R.layout.movie2_result, null);
  
-        TextView title = (TextView)vi.findViewById(com.daginge.tmdbsearch.R.id.title); // title
+        TextView title = (TextView)vi.findViewById(com.pranav.tmdb_api_movie.R.id.title); // title
         
-        TextView year = (TextView)vi.findViewById(com.daginge.tmdbsearch.R.id.rating); // duration
-        TextView rating = (TextView)vi.findViewById(com.daginge.tmdbsearch.R.id.year); // artist name
-        ImageView thumb_image=(ImageView)vi.findViewById(com.daginge.tmdbsearch.R.id.list_image); // thumb image
+        TextView year = (TextView)vi.findViewById(com.pranav.tmdb_api_movie.R.id.rating); // duration
+        TextView rating = (TextView)vi.findViewById(com.pranav.tmdb_api_movie.R.id.year); // artist name
+        ImageView thumb_image=(ImageView)vi.findViewById(com.pranav.tmdb_api_movie.R.id.list_image); // thumb image
  
         movie = data.get(position);
 //        Log.d("search view detailed", position + movie.toString());

@@ -47,6 +47,11 @@
             android:name="com.pranav.tmdb_api_movie.Display_With_Image"
             android:label="@string/title_activity_display__with__image" >
         </activity>
+          <activity
+            android:name="com.pranav.tmdb_api_movie.Detailed_View"
+            android:label="@string/title_activity_detailed__view" >
+        </activity>
+        
     </application>
 
 </manifest>

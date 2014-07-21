@@ -1,6 +1,5 @@
 package com.pranav.tmdb_api_movie;
 
-
 public class MovieResult {
     private final String backdropPath;
     private final String originalTitle;
@@ -92,6 +91,7 @@ public class MovieResult {
         return id;
     }
 
+    
     public String getPopularity() {
         return popularity;
     }

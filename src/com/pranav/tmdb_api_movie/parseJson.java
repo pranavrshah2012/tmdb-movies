@@ -1,5 +1,4 @@
 package com.pranav.tmdb_api_movie;
-
  
 import java.util.ArrayList;
 import java.util.HashMap;
