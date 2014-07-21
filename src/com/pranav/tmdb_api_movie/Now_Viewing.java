@@ -27,6 +27,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import com.daginge.tmdbsearch.Now_Viewing.LazyAdapter;
 import com.pranav.tmdb_api_movie.R;
 import com.pranav.tmdb_api_movie.MovieResult.Builder;
 
@@ -36,6 +37,13 @@ public class Now_Viewing extends Activity {
     final String KEY_RATING = "Rating";
     final String KEY_THUMB_URL = "thumb_url";
     final String KEY_ID = "id";
+    
+StringBuilder imageStringBuilder = new StringBuilder();
+
+    
+    ListView list;
+    LazyAdapter adapter;
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
