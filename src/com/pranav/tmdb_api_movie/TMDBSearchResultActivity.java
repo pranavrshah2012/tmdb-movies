@@ -27,6 +27,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import com.daginge.tmdbsearch.MovieResult;
 import com.daginge.tmdbsearch.TMDBSearchResultActivity.LazyAdapter;
 import com.pranav.tmdb_api_movie.R;
 import com.pranav.tmdb_api_movie.MovieResult.Builder;
@@ -183,37 +184,79 @@ public class TMDBSearchResultActivity extends Activity {
          * Searches IMDBs API for the given query
          * @param query The query to search.
          * @return A list of all hits.
-         */
-        public ArrayList<MovieResult> searchIMDB(String query) throws IOException {
-            // Build URL
-            StringBuilder stringBuilder = new StringBuilder();
-            stringBuilder.append("https://api.themoviedb.org/3/search/movie");
-            stringBuilder.append("?api_key=" + TMDB_API_KEY);
-            stringBuilder.append("&query=" + query);
-            URL url = new URL(stringBuilder.toString());
-            
-            InputStream stream = null;
-            try {
-                // Establish a connection
-                HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-                conn.setReadTimeout(10000 /* milliseconds */);
-                conn.setConnectTimeout(15000 /* milliseconds */);
-                conn.setRequestMethod("GET");
-                conn.addRequestProperty("Accept", "application/json"); // Required to get TMDB to play nicely.
-                conn.setDoInput(true);
-                conn.connect();
-                
-                int responseCode = conn.getResponseCode();
-                Log.d(DEBUG_TAG, "The response code is: " + responseCode + " " + conn.getResponseMessage());
-                
-                stream = conn.getInputStream();
-                return parseResult(stringify(stream));
-            } finally {
-                if (stream != null) {
-                    stream.close();
-                }
-            }
-        }
+         */public ArrayList<MovieResult> searchIMDB(String query) throws IOException {
+             // Build URL
+         	//addding support for images
+         	StringBuilder imageStringBuilder = new StringBuilder();
+         	imageStringBuilder.append("http://image.tmdb.org/t/p/w500/");
+//         			"http://image.tmdb.org/t/p/w500/g5ZHGeWNY5zUcojk0Xxk1KNxqAl.jpg
+         	
+             StringBuilder stringBuilder = new StringBuilder();
+             stringBuilder.append("https://api.themoviedb.org/3/search/movie");
+             stringBuilder.append("?api_key=" + TMDB_API_KEY);
+             stringBuilder.append("&query=" + query);
+             URL url = new URL(stringBuilder.toString());
+             
+             InputStream stream = null;
+             try {
+                 // Establish a connection
+                 HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+                 conn.setReadTimeout(10000 /* milliseconds */);
+                 conn.setConnectTimeout(15000 /* milliseconds */);
+                 conn.setRequestMethod("GET");
+                 conn.addRequestProperty("Accept", "application/json"); // Required to get TMDB to play nicely.
+                 conn.setDoInput(true);
+                 conn.connect();
+                 
+                 int responseCode = conn.getResponseCode();
+                 Log.d(DEBUG_TAG, "The response code is: " + responseCode + " " + conn.getResponseMessage());
+                 
+                 stream = conn.getInputStream();
+                 return parseResult(stringify(stream));
+             } finally {
+                 if (stream != null) {
+                     stream.close();
+                 }
+             }
+         }
+         
+         public ArrayList<HashMap<String, String>> search2(String query) throws IOException {
+             // Build URL
+         	//addding support for images
+         	imageStringBuilder.append("http://image.tmdb.org/t/p/w500");
+//         			"http://image.tmdb.org/t/p/w500/g5ZHGeWNY5zUcojk0Xxk1KNxqAl.jpg
+         	
+             StringBuilder stringBuilder = new StringBuilder();
+             stringBuilder.append("https://api.themoviedb.org/3/search/movie");
+             stringBuilder.append("?api_key=" + TMDB_API_KEY);
+             stringBuilder.append("&query=" + query);
+             URL url = new URL(stringBuilder.toString());
+             
+             InputStream stream = null;
+             try {
+                 // Establish a connection
+                 HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+                 conn.setReadTimeout(10000 /* milliseconds */);
+                 conn.setConnectTimeout(15000 /* milliseconds */);
+                 conn.setRequestMethod("GET");
+                 conn.addRequestProperty("Accept", "application/json"); // Required to get TMDB to play nicely.
+                 conn.setDoInput(true);
+                 conn.connect();
+                 
+                 int responseCode = conn.getResponseCode();
+                 Log.d(DEBUG_TAG, "The response code is: " + responseCode + " " + conn.getResponseMessage());
+                 
+                 stream = conn.getInputStream();
+//                 return parseResult(stringify(stream));
+                 return parse2(stringify(stream));
+             } finally {
+                 if (stream != null) {
+                     stream.close();
+                 }
+             }
+         }
+
+
 
         private ArrayList<MovieResult> parseResult(String result) {
             String streamAsString = result;
