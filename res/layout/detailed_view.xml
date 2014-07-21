@@ -17,6 +17,7 @@
         android:layout_height="200dp"
         android:layout_below="@id/name_of_movie"
         android:contentDescription="@string/image_of_movie"
+        android:src="@drawable/images"       
         android:padding="5dp" />
  
     <ListView
@@ -34,5 +35,18 @@
         android:layout_alignTop="@+id/image_of_movie"
         android:layout_toRightOf="@+id/image_of_movie"
         android:text="" />
+
+    <TextView
+        android:id="@+id/rating"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:textColor="#343434"
+        android:textSize="10dip"
+        android:layout_marginTop="1dip"
+        android:text="7" />
+        
+         />
 
 </RelativeLayout>

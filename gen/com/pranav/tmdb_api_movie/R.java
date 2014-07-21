@@ -1080,6 +1080,7 @@ containing a value of this type.
         public static final int abc_textfield_searchview_right_holo_dark=0x7f020055;
         public static final int abc_textfield_searchview_right_holo_light=0x7f020056;
         public static final int ic_launcher=0x7f020057;
+        public static final int images=0x7f020058;
     }
     public static final class id {
         public static final int View_movies=0x7f05004c;
@@ -1118,7 +1119,7 @@ containing a value of this type.
         public static final int image=0x7f050027;
         public static final int image_of_movie=0x7f050043;
         public static final int listMode=0x7f050001;
-        public static final int list_image=0x7f050048;
+        public static final int list_image=0x7f050049;
         public static final int list_item=0x7f050029;
         public static final int menu_settings=0x7f05004d;
         public static final int middle=0x7f050012;
@@ -1133,7 +1134,7 @@ containing a value of this type.
         public static final int progress_circular=0x7f050018;
         public static final int progress_horizontal=0x7f050019;
         public static final int radio=0x7f05002f;
-        public static final int rating=0x7f050049;
+        public static final int rating=0x7f050047;
         public static final int search_badge=0x7f050032;
         public static final int search_bar=0x7f050031;
         public static final int search_button=0x7f050033;
@@ -1152,7 +1153,7 @@ containing a value of this type.
         public static final int submit_area=0x7f050039;
         public static final int synopsis=0x7f050046;
         public static final int tabMode=0x7f050002;
-        public static final int thumbnail=0x7f050047;
+        public static final int thumbnail=0x7f050048;
         public static final int title=0x7f05002b;
         public static final int top_action_bar=0x7f050020;
         public static final int toprated=0x7f050040;

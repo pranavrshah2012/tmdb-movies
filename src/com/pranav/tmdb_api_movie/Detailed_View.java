@@ -168,12 +168,12 @@ public class Detailed_View extends Activity {
 		id = i.getStringExtra("id");
 
 		TextView txtname = (TextView) findViewById(R.id.name_of_movie);
-		// TextView txtsynopsis = (TextView)findViewById(R.id.movie_details);
+		 TextView txtrating = (TextView)findViewById(R.id.rating);
 		ImageView bigger_image = (ImageView) findViewById(com.pranav.tmdb_api_movie.R.id.image_of_movie); // bigger
 																											// image
 
 		txtname.setText(title);
-		// txtsynopsis.setText(synopsis);
+		 txtrating.setText(rating);
 
 		imageLoader.DisplayImage(imgUrl, bigger_image);
 
