@@ -80,6 +80,7 @@ import android.os.Bundle;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
@@ -176,7 +177,8 @@ public class Detailed_View extends Activity {
 
 		imageLoader.DisplayImage(imgUrl, bigger_image);
 
-		new TMDBDetail().execute();
+		new TMDBCast().execute();
+		new TMDBSynopsis().execute();
 
 	}
 
@@ -202,6 +204,17 @@ public class Detailed_View extends Activity {
 		listView.setAdapter(adapter);
 
 	}
+	
+	public void updateSynopsis(ArrayList<String> result) {
+		Log.d("was", "called me?");
+		TextView txtSynopsis = (TextView) findViewById(R.id.synopsis);
+        txtSynopsis.setMovementMethod(new ScrollingMovementMethod());
+		txtSynopsis.setText(result.get(0));
+
+		
+	}
+	
+	
 
 	public class LazyDetail extends BaseAdapter {
 		HashMap<String, String> movie = new HashMap<String, String>();
@@ -264,7 +277,7 @@ public class Detailed_View extends Activity {
 		}
 	}//
 
-	private class TMDBDetail extends AsyncTask<Object, Void, ArrayList<String>> {
+	private class TMDBCast extends AsyncTask<Object, Void, ArrayList<String>> {
 
 		private final String TMDB_API_KEY = "c47afb8e8b27906bca710175d6e8ba68";
 		private static final String DEBUG_TAG = "TMDBQueryManager";
@@ -272,7 +285,7 @@ public class Detailed_View extends Activity {
 		@Override
 		protected ArrayList<String> doInBackground(Object... params) {
 			try {
-				return searchMoreDetail();
+				return getCast();
 			} catch (IOException e) {
 				return null;
 			}
@@ -284,7 +297,7 @@ public class Detailed_View extends Activity {
 
 		};
 
-		public ArrayList<String> searchMoreDetail() throws IOException {
+		public ArrayList<String> getCast() throws IOException {
 
 			StringBuilder stringBuilder = new StringBuilder();
 			stringBuilder.append("https://api.themoviedb.org/3/movie/" + id
@@ -316,7 +329,7 @@ public class Detailed_View extends Activity {
 						+ conn.getResponseMessage());
 
 				stream = conn.getInputStream();
-				return parseDetail(stringify(stream));
+				return parseCast(stringify(stream));
 			} finally {
 				if (stream != null) {
 					stream.close();
@@ -324,7 +337,7 @@ public class Detailed_View extends Activity {
 			}
 		}
 
-		private ArrayList<String> parseDetail(String result) {
+		private ArrayList<String> parseCast(String result) {
 			String streamAsString = result;
 
 			ArrayList<String> results_Cast = new ArrayList<String>();
@@ -337,6 +350,95 @@ public class Detailed_View extends Activity {
 					JSONObject jsonMovieObject = array.getJSONObject(i);
 					results_Cast.add(jsonMovieObject.getString("name"));
 				}
+			} catch (JSONException e) {
+				Log.d("e", e.toString());
+				Log.d(DEBUG_TAG, "Error parsing JSON. String was: "
+						+ streamAsString);
+			}
+			// Log.d("resulted", results_Cast.toString());
+			return results_Cast;
+		}
+
+		public String stringify(InputStream stream) throws IOException,
+				UnsupportedEncodingException {
+			Reader reader = null;
+			reader = new InputStreamReader(stream, "UTF-8");
+			BufferedReader bufferedReader = new BufferedReader(reader);
+			return bufferedReader.readLine();
+		}
+	}
+
+	private class TMDBSynopsis extends
+			AsyncTask<Object, Void, ArrayList<String>> {
+
+		private final String TMDB_API_KEY = "c47afb8e8b27906bca710175d6e8ba68";
+		private static final String DEBUG_TAG = "TMDBQueryManager";
+
+		@Override
+		protected ArrayList<String> doInBackground(Object... params) {
+			try {
+				return getSynopsis();
+			} catch (IOException e) {
+				return null;
+			}
+		}
+
+		@Override
+		protected void onPostExecute(ArrayList<String> results_Cast) {
+			updateSynopsis(results_Cast);
+
+		};
+
+		public ArrayList<String> getSynopsis() throws IOException {
+
+			StringBuilder stringBuilder = new StringBuilder();
+			stringBuilder.append("https://api.themoviedb.org/3/movie/" + id);
+			stringBuilder.append("?api_key=" + TMDB_API_KEY);
+			URL url = new URL(stringBuilder.toString());
+			// Log.d("urlstring",stringBuilder.toString() );
+
+			InputStream stream = null;
+			try {
+				// Establish a connection
+				HttpURLConnection conn = (HttpURLConnection) url
+						.openConnection();
+				conn.setReadTimeout(10000 /* milliseconds */);
+				conn.setConnectTimeout(15000 /* milliseconds */);
+				conn.setRequestMethod("GET");
+				conn.addRequestProperty("Accept", "application/json"); // Required
+																		// to
+																		// get
+																		// TMDB
+																		// to
+																		// play
+																		// nicely.
+				conn.setDoInput(true);
+				conn.connect();
+
+				int responseCode = conn.getResponseCode();
+				Log.d(DEBUG_TAG, "The response code is: " + responseCode + " "
+						+ conn.getResponseMessage());
+
+				stream = conn.getInputStream();
+				return parseSynopsis(stringify(stream));
+			} finally {
+				if (stream != null) {
+					stream.close();
+				}
+			}
+		}
+
+		private ArrayList<String> parseSynopsis(String result) {
+			String streamAsString = result;
+
+			ArrayList<String> results_Cast = new ArrayList<String>();
+			try {
+				JSONObject jsonObject = new JSONObject(streamAsString);
+				 Log.d("overview","synopsis : "+jsonObject.getString("overview"));
+				//
+				results_Cast.add(jsonObject.getString("overview"));
+
+				// }
 			} catch (JSONException e) {
 				Log.d("e", e.toString());
 				Log.d(DEBUG_TAG, "Error parsing JSON. String was: "

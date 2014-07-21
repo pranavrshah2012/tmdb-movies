@@ -13,17 +13,26 @@
  
     <ImageView
         android:id="@+id/image_of_movie"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
+        android:layout_width="220dp"
+        android:layout_height="200dp"
         android:layout_below="@id/name_of_movie"
-        android:layout_centerVertical="true"
-        android:padding="5dp"
-        android:contentDescription="@string/image_of_movie" />
+        android:contentDescription="@string/image_of_movie"
+        android:padding="5dp" />
  
     <ListView
         android:id="@+id/cast_details"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/image_of_movie" />
+
+    <TextView
+        android:id="@+id/synopsis"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/image_of_movie"
+        android:layout_alignParentRight="true"
+        android:layout_alignTop="@+id/image_of_movie"
+        android:layout_toRightOf="@+id/image_of_movie"
+        android:text="" />
 
 </RelativeLayout>
