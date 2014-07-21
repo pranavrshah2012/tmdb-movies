@@ -258,41 +258,81 @@ public class TMDBSearchResultActivity extends Activity {
 
 
 
-        private ArrayList<MovieResult> parseResult(String result) {
-            String streamAsString = result;
-            ArrayList<MovieResult> results = new ArrayList<MovieResult>();
-            try {
-                JSONObject jsonObject = new JSONObject(streamAsString);
-                JSONArray array = (JSONArray) jsonObject.get("results");
-                for (int i = 0; i < array.length(); i++) {
-                    JSONObject jsonMovieObject = array.getJSONObject(i);
-                    Builder movieBuilder = MovieResult.newBuilder(
-                            Integer.parseInt(jsonMovieObject.getString("id")),
-                            jsonMovieObject.getString("title"))
-                            .setBackdropPath(jsonMovieObject.getString("backdrop_path"))
-                  .setPosterPath(jsonMovieObject.getString("poster_path"))
-                  .setReleaseDate(jsonMovieObject.getString("release_date"))         
-                  .setOriginalTitle(jsonMovieObject.getString("original_title"));
-                         
-//                    .setPopularity(jsonMovieObject.getString("popularity"))
-                            
-                            
-                    results.add(movieBuilder.build());
-                }
-            } catch (JSONException e) {
-                System.err.println(e);
-                Log.d(DEBUG_TAG, "Error parsing JSON. String was: " + streamAsString);
-            }
-            return results;
-        }
+         private ArrayList<MovieResult> parseResult(String result) {
+             String streamAsString = result;
+             ArrayList<MovieResult> results = new ArrayList<MovieResult>();
+             try {
+                 JSONObject jsonObject = new JSONObject(streamAsString);
+                 JSONArray array = (JSONArray) jsonObject.get("results");
+                 for (int i = 0; i < array.length(); i++) {
+                     JSONObject jsonMovieObject = array.getJSONObject(i);
+                     Builder movieBuilder = MovieResult.newBuilder(
+                             Integer.parseInt(jsonMovieObject.getString("id")),
+                             jsonMovieObject.getString("title"))
+                             .setBackdropPath(jsonMovieObject.getString("backdrop_path"))
+                   .setPosterPath(jsonMovieObject.getString("poster_path"))
+                   .setReleaseDate(jsonMovieObject.getString("release_date"))         
+                   .setOriginalTitle(jsonMovieObject.getString("original_title"));
+                          
+//                     .setPopularity(jsonMovieObject.getString("popularity"))
+                             
+                             
+                     results.add(movieBuilder.build());
+                 }
+             } catch (JSONException e) {
+                 System.err.println(e);
+                 Log.d(DEBUG_TAG, "Error parsing JSON. String was: " + streamAsString);
+             }
+             return results;
+         }
+         
+         private ArrayList<HashMap<String, String>> parse2(String result) {
+             String streamAsString = result;        
+              
+             
+             ArrayList<HashMap<String, String>> results = new ArrayList<HashMap<String, String>>();
+             try {
+                 JSONObject jsonObject = new JSONObject(streamAsString);
+                 JSONArray array = (JSONArray) jsonObject.get("results");
+                 for (int i = 0; i < array.length(); i++) {
+                    HashMap <String, String> map = new HashMap <String, String>();
+                 	jsonMovieObject = array.getJSONObject(i);
+                 	map.put(KEY_TITLE, jsonMovieObject.getString("original_title"));
+                 	map.put(KEY_YEAR, jsonMovieObject.getString("release_date"));
+                 	map.put(KEY_RATING, jsonMovieObject.getString("vote_average"));
+//                 	map.put(KEY_THUMB_URL, imageStringBuilder.append(jsonMovieObject.getString("poster_path")).toString());
+                 	map.put(KEY_THUMB_URL, "http://image.tmdb.org/t/p/w500"+jsonMovieObject.getString("poster_path"));
+
+
+                 	
+//                 	Builder movieBuilder = MovieResult.newBuilder(
+//                             Integer.parseInt(jsonMovieObject.getString("id")),
+//                             jsonMovieObject.getString("title"))
+//                             .setBackdropPath(jsonMovieObject.getString("backdrop_path"))
+//                   .setPosterPath(jsonMovieObject.getString("poster_path"))
+//                   .setReleaseDate(jsonMovieObject.getString("release_date"))         
+//                   .setOriginalTitle(jsonMovieObject.getString("original_title"));
+                          
+//                     .setPopularity(jsonMovieObject.getString("popularity"))
+                             
+                             
+                     results.add(map);
+                 }
+             } catch (JSONException e) {
+                 System.err.println(e);
+                 Log.d(DEBUG_TAG, "Error parsing JSON. String was: " + streamAsString);
+             }
+             return results;
+         }
         
-        public String stringify(InputStream stream) throws IOException, UnsupportedEncodingException {
-            Reader reader = null;
-            reader = new InputStreamReader(stream, "UTF-8");        
-            BufferedReader bufferedReader = new BufferedReader(reader);
-            return bufferedReader.readLine();
-        }
-    }
+         public String stringify(InputStream stream) throws IOException, UnsupportedEncodingException {
+             Reader reader = null;
+             reader = new InputStreamReader(stream, "UTF-8");        
+             BufferedReader bufferedReader = new BufferedReader(reader);
+             return bufferedReader.readLine();
+         }
+     }
+   
     
  }
 
