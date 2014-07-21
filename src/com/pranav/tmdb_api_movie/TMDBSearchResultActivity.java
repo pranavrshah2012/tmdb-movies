@@ -27,6 +27,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import com.daginge.tmdbsearch.TMDBSearchResultActivity.LazyAdapter;
 import com.pranav.tmdb_api_movie.R;
 import com.pranav.tmdb_api_movie.MovieResult.Builder;
 
@@ -59,6 +60,18 @@ import android.widget.SimpleAdapter;
 
 
 public class TMDBSearchResultActivity extends Activity {
+	
+	final String KEY_TITLE = "title";
+    final String KEY_YEAR = "Year";
+    final String KEY_RATING = "Rating";
+    final String KEY_THUMB_URL = "thumb_url";
+    final String KEY_ID = "id";    
+    JSONObject jsonMovieObject;    
+	StringBuilder imageStringBuilder = new StringBuilder();
+
+    
+    ListView list;
+    LazyAdapter adapter;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -103,6 +116,48 @@ public class TMDBSearchResultActivity extends Activity {
         setContentView(listView);
     }
     
+    public void update2(ArrayList<HashMap<String, String>> result) {	
+    	 
+    	Log.d("this", this.toString());
+      Log.d("results", result.toString());
+
+  	ListView listView = new ListView(this);
+      Log.d("updateViewWithResults", result.toString());
+      // Add results to listView.
+//      ArrayAdapter<HashMap<String, String>> adapter = 
+//              new ArrayAdapter<HashMap<String, String>>(this,
+//                      R.layout.movie2_result, R.id.rating, result);
+      
+      LazyAdapter adapter = 
+              new LazyAdapter(this, result);
+      listView.setAdapter(adapter);
+      // Update Activity to show listView
+      setContentView(listView);
+    	
+    	
+//    	ListView listView = new ListView(this);
+//    	
+//    	   // Add results to listView.
+//
+//        ArrayAdapter adapter = new ArrayAdapter
+//        (this,R.layout.movie2_result, R.id.rating, result);
+//        listView.setAdapter(adapter);
+//        // Update Activity to show listView
+//        setContentView(listView);	
+    	
+    	
+        
+  
+//         // Click event for single list row
+//         list.setOnItemClickListener(new OnItemClickListener() {
+//  
+//             @Override
+//             public void onItemClick(AdapterView&lt;?&gt; parent, View view,
+//                     int position, long id) {
+//  
+//             }
+//         });
+    }
    
     
     private class TMDBQueryManager extends AsyncTask {
@@ -113,7 +168,7 @@ public class TMDBSearchResultActivity extends Activity {
         @Override
         protected ArrayList<MovieResult> doInBackground(Object... params) {
             try {
-                return searchIMDB((String) params[0]);
+            	return search2 ((String) params[0]);
             } catch (IOException e) {
                 return null;
             }
@@ -121,7 +176,7 @@ public class TMDBSearchResultActivity extends Activity {
         
         @Override
         protected void onPostExecute(Object result) {
-            updateViewWithResults((ArrayList<MovieResult>) result);
+        	update2((ArrayList<HashMap<String, String>>) result);
         };
 
         /**
