@@ -20,11 +20,10 @@
         android:padding="5dp"
         android:contentDescription="@string/image_of_movie" />
  
-    <TextView
+    <ListView
         android:id="@+id/cast_details"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_toRightOf="@id/image_of_movie"
-        android:layout_below="@id/name_of_movie"  />
+        android:layout_below="@+id/image_of_movie" />
 
 </RelativeLayout>
