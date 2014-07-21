@@ -161,7 +161,7 @@ public class Detailed_View extends Activity {
 		title = i.getStringExtra("title");
 		imageLoader = new ImageLoader(getApplicationContext());
 
-		synopsis = i.getStringExtra("Rating");
+		rating = i.getStringExtra("Rating");
 		credits = i.getStringExtra("credits");
 
 		imgUrl = i.getStringExtra("thumb_url");
@@ -174,6 +174,7 @@ public class Detailed_View extends Activity {
 
 		txtname.setText(title);
 		 txtrating.setText(rating);
+
 
 		imageLoader.DisplayImage(imgUrl, bigger_image);
 
@@ -206,7 +207,6 @@ public class Detailed_View extends Activity {
 	}
 	
 	public void updateSynopsis(ArrayList<String> result) {
-		Log.d("was", "called me?");
 		TextView txtSynopsis = (TextView) findViewById(R.id.synopsis);
         txtSynopsis.setMovementMethod(new ScrollingMovementMethod());
 		txtSynopsis.setText(result.get(0));

@@ -2,24 +2,24 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent" >
-    
-     <TextView
+
+    <TextView
         android:id="@+id/name_of_movie"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:textSize="20dp"
         android:textStyle="bold" />
- 
+
     <ImageView
         android:id="@+id/image_of_movie"
         android:layout_width="220dp"
         android:layout_height="200dp"
         android:layout_below="@id/name_of_movie"
         android:contentDescription="@string/image_of_movie"
-        android:src="@drawable/images"       
-        android:padding="5dp" />
- 
+        android:padding="5dp"
+        android:src="@drawable/images" />
+
     <ListView
         android:id="@+id/cast_details"
         android:layout_width="wrap_content"
@@ -38,15 +38,14 @@
 
     <TextView
         android:id="@+id/rating"
-        android:layout_width="fill_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
         android:layout_alignParentTop="true"
-        android:textColor="#343434"
-        android:textSize="10dip"
         android:layout_marginTop="1dip"
-        android:text="7" />
-        
-         />
+        android:text="7"
+        android:textColor="#10bcc9"
+        android:textSize="40dip"
+        android:textStyle="bold" />
 
 </RelativeLayout>
