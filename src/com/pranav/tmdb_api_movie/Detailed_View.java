@@ -232,7 +232,7 @@ public class Detailed_View extends Activity {
 			imageLoader = new ImageLoader(activity.getApplicationContext());
 		}
 
-		public LazyDetail(TMDBSearchResultActivity tmdbSearchResultActivity,
+		public LazyDetail(SearchActivity tmdbSearchResultActivity,
 				int movie2Result, int rating,
 				ArrayList<HashMap<String, String>> result) {
 			// TODO Auto-generated constructor stub

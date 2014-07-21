@@ -15,5 +15,6 @@
     <string name="title_activity_display__with__image">Display_With_Image</string>
     <string name="title_activity_detail__view">Detail_View</string>
     <string name="title_activity_detailed__view">Detailed_View</string>
+    <string name="title_activity_top_rated">TopRated</string>
 
 </resources>

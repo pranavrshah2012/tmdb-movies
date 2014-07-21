@@ -1,6 +1,5 @@
 package com.pranav.tmdb_api_movie;
 
-//import com.daginge.tmdbsearch.Display_With_Image.ImageDownloading;
 import com.pranav.tmdb_api_movie.R;
 
 import java.util.ArrayList;
@@ -41,6 +40,8 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
+import android.view.View.OnClickListener;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 
@@ -56,6 +57,21 @@ public class MainActivity extends Activity {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
+		
+		  Button nowPlayingMovieButton = (Button) findViewById(R.id.now);
+	      nowPlayingMovieButton.setOnClickListener(new OnClickListener() {            
+	           public void onClick(View v) {
+	           startActivity(new Intent(getApplicationContext(), Now_Viewing.class));
+	           }
+		     });
+	      
+	      Button topMoviesButton = (Button) findViewById(R.id.toprated);
+	      topMoviesButton.setOnClickListener(new OnClickListener() {            
+	           public void onClick(View v) {
+	           startActivity(new Intent(getApplicationContext(), TopRated.class));
+	           }
+		     });
+	      
 
 	}
 
@@ -71,12 +87,18 @@ public class MainActivity extends Activity {
 	 */
 
 	public void queryTMDB(View view) {
-		Intent intent = new Intent(this, TMDBSearchResultActivity.class);
+		Intent intent = new Intent(this, SearchActivity.class);
 		// Intent intent = new Intent(this, Now_Viewing.class);
+//		Intent intent = new Intent(this, TopRated.class);
+
 		EditText editText = (EditText) findViewById(R.id.edit_message);
 		String query = editText.getText().toString();
 		intent.putExtra(EXTRA_QUERY, query);
 		startActivity(intent);
 	}
+	
+
+	
+	
 
 }

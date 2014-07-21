@@ -10,8 +10,7 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-      <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
-    
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
         android:icon="@drawable/ic_launcher"
@@ -27,7 +26,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.pranav.tmdb_api_movie.TMDBSearchResultActivity"
+            android:name="com.pranav.tmdb_api_movie.SearchActivity"
             android:label="@string/title_activity_imdbsearch_result" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -47,11 +46,14 @@
             android:name="com.pranav.tmdb_api_movie.Display_With_Image"
             android:label="@string/title_activity_display__with__image" >
         </activity>
-          <activity
+        <activity
             android:name="com.pranav.tmdb_api_movie.Detailed_View"
             android:label="@string/title_activity_detailed__view" >
         </activity>
-        
+        <activity
+            android:name="com.pranav.tmdb_api_movie.TopRated"
+            android:label="@string/title_activity_top_rated" >
+        </activity>
     </application>
 
 </manifest>

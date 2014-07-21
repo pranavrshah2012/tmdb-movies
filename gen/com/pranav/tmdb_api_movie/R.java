@@ -1098,8 +1098,6 @@ containing a value of this type.
         public static final int activity_chooser_view_content=0x7f050025;
         public static final int always=0x7f05000b;
         public static final int beginning=0x7f050011;
-        public static final int button2=0x7f05003f;
-        public static final int button3=0x7f050040;
         public static final int cast_details=0x7f050044;
         public static final int checkbox=0x7f05002d;
         public static final int collapseActionView=0x7f05000d;
@@ -1130,6 +1128,7 @@ containing a value of this type.
         public static final int never=0x7f050009;
         public static final int none=0x7f050010;
         public static final int normal=0x7f050000;
+        public static final int now=0x7f05003f;
         public static final int progressBar=0x7f05003d;
         public static final int progress_circular=0x7f050018;
         public static final int progress_horizontal=0x7f050019;
@@ -1156,6 +1155,7 @@ containing a value of this type.
         public static final int thumbnail=0x7f050046;
         public static final int title=0x7f05002b;
         public static final int top_action_bar=0x7f050020;
+        public static final int toprated=0x7f050040;
         public static final int up=0x7f050021;
         public static final int useLogo=0x7f050003;
         public static final int withText=0x7f05000c;
@@ -1217,18 +1217,21 @@ containing a value of this type.
         public static final int activity_imdbsearch_result=0x7f03001b;
         public static final int activity_main=0x7f03001c;
         public static final int activity_nowviewing_result=0x7f03001d;
-        public static final int credits=0x7f03001e;
-        public static final int detail_cast_view=0x7f03001f;
-        public static final int detailed_view=0x7f030020;
-        public static final int fragment_detail__view=0x7f030021;
-        public static final int fragment_detailed__view=0x7f030022;
-        public static final int fragment_display__with__image=0x7f030023;
-        public static final int fragment_main=0x7f030024;
-        public static final int movie2_result=0x7f030025;
-        public static final int movie_result_list_item=0x7f030026;
-        public static final int movielist_with_image=0x7f030027;
-        public static final int support_simple_spinner_dropdown_item=0x7f030028;
-        public static final int tempmain=0x7f030029;
+        public static final int activity_top_rated=0x7f03001e;
+        public static final int credits=0x7f03001f;
+        public static final int detail_cast_view=0x7f030020;
+        public static final int detailed_view=0x7f030021;
+        public static final int fragment_detail__view=0x7f030022;
+        public static final int fragment_detailed__view=0x7f030023;
+        public static final int fragment_display__with__image=0x7f030024;
+        public static final int fragment_main=0x7f030025;
+        public static final int fragment_top_rated=0x7f030026;
+        public static final int movie2_result=0x7f030027;
+        public static final int movie_result_list_item=0x7f030028;
+        public static final int movielist_with_image=0x7f030029;
+        public static final int support_simple_spinner_dropdown_item=0x7f03002a;
+        public static final int tempmain=0x7f03002b;
+        public static final int top_rated=0x7f03002c;
     }
     public static final class menu {
         public static final int activity_imdbsearch_result=0x7f0c0000;
@@ -1239,6 +1242,7 @@ containing a value of this type.
         public static final int image_download=0x7f0c0005;
         public static final int main=0x7f0c0006;
         public static final int now__viewing=0x7f0c0007;
+        public static final int top_rated=0x7f0c0008;
     }
     public static final class string {
         /**  Content description for the action bar "home" affordance. [CHAR LIMIT=NONE] 
@@ -1295,6 +1299,7 @@ containing a value of this type.
         public static final int title_activity_imdbsearch_result=0x7f0a0012;
         public static final int title_activity_main=0x7f0a000f;
         public static final int title_activity_now__viewing=0x7f0a0013;
+        public static final int title_activity_top_rated=0x7f0a001b;
     }
     public static final class style {
         /** 

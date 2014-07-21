@@ -23,17 +23,17 @@
         android:text="@string/button_send" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/now"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="0.58"
         android:text="Now Playing" />
     
        <Button
-        android:id="@+id/button3"
+        android:id="@+id/toprated"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="0.58"
-        android:text="Up_coming" />
+        android:text="Top Rated" />
 
 </LinearLayout>

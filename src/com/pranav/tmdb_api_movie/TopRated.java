@@ -1,5 +1,17 @@
 package com.pranav.tmdb_api_movie;
 
+import android.app.Activity;
+import android.app.ActionBar;
+import android.app.Fragment;
+import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.View;
+import android.view.ViewGroup;
+import android.os.Build;
+
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -36,7 +48,7 @@ import org.json.JSONObject;
 import com.pranav.tmdb_api_movie.R;
 import com.pranav.tmdb_api_movie.SearchActivity.LazyAdapter;
 
-public class Now_Viewing extends Activity {
+public class TopRated extends Activity {
 	private final String KEY_TITLE = "title";
 	private  final String KEY_YEAR = "Year";
 	private  final String KEY_RATING = "Rating";
@@ -54,7 +66,7 @@ public class Now_Viewing extends Activity {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_nowviewing_result);
+		setContentView(R.layout.activity_top_rated);
 		// getActionBar().setDisplayHomeAsUpEnabled(true);
 
 		// Get the intent to get the query.
@@ -65,7 +77,7 @@ public class Now_Viewing extends Activity {
 		ConnectivityManager connMgr = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
 		NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
 		if (networkInfo != null && networkInfo.isConnected()) {
-			new TMDBNow_View().execute();
+			new TMDBTop().execute();
 		} else {
 			TextView textView = new TextView(this);
 			textView.setText("No network connection.");
@@ -92,7 +104,7 @@ public class Now_Viewing extends Activity {
 
 	}
 
-	private class TMDBNow_View extends AsyncTask {
+	private class TMDBTop extends AsyncTask {
 
 		private final String TMDB_API_KEY = "c47afb8e8b27906bca710175d6e8ba68";
 		private static final String DEBUG_TAG = "TMDBQueryManager";
@@ -101,7 +113,7 @@ public class Now_Viewing extends Activity {
 		protected ArrayList<HashMap<String, String>> doInBackground(
 				Object... params) {
 			try {
-				return displayNowPlayingMovies();
+				return displayTopMovies();
 			} catch (IOException e) {
 				return null;
 			}
@@ -115,13 +127,13 @@ public class Now_Viewing extends Activity {
 		/**
 		 * Searches IMDBs API for the given query
 		 */
-		public ArrayList<HashMap<String, String>> displayNowPlayingMovies()
+		public ArrayList<HashMap<String, String>> displayTopMovies()
 				throws IOException {
 			// Build URL
 			// https://api.themoviedb.org/3/movie/now_playing?api_key=c47afb8e8b27906bca710175d6e8ba68
 			StringBuilder stringBuilder = new StringBuilder();
 			stringBuilder
-					.append("https://api.themoviedb.org/3/movie/now_playing");
+					.append("https://api.themoviedb.org/3/movie/top_rated");
 			stringBuilder.append("?api_key=" + TMDB_API_KEY);
 			// stringBuilder.append("&query=" + query); // mk query null future?
 			URL url = new URL(stringBuilder.toString());
@@ -149,7 +161,7 @@ public class Now_Viewing extends Activity {
 						+ conn.getResponseMessage());
 
 				stream = conn.getInputStream();
-				return parseNow_View(stringify(stream));
+				return parseTopMovies(stringify(stream));
 			} finally {
 				if (stream != null) {
 					stream.close();
@@ -157,7 +169,7 @@ public class Now_Viewing extends Activity {
 			}
 		}
 
-		private ArrayList<HashMap<String, String>> parseNow_View(String result) {
+		private ArrayList<HashMap<String, String>> parseTopMovies(String result) {
 			String streamAsString = result;
 			ArrayList<HashMap<String, String>> results = new ArrayList<HashMap<String, String>>();
 			try {
@@ -210,7 +222,7 @@ public class Now_Viewing extends Activity {
 			imageLoader = new ImageLoader(activity.getApplicationContext());
 		}
 
-		public LazyAdapter(Now_Viewing now_ViewingActivity,
+		public LazyAdapter(TopRated TopRatedActivity,
 				int movie2Result, int rating,
 				ArrayList<HashMap<String, String>> result) {
 			// TODO Auto-generated constructor stub
@@ -234,7 +246,7 @@ public class Now_Viewing extends Activity {
 			View vi = convertView;
 			if (convertView == null)
 				vi = inflater.inflate(
-						com.pranav.tmdb_api_movie.R.layout.movie2_result, null);
+						com.pranav.tmdb_api_movie.R.layout.top_rated, null);
 
 			TextView title = (TextView) vi
 					.findViewById(com.pranav.tmdb_api_movie.R.id.title); // title
@@ -264,7 +276,7 @@ public class Now_Viewing extends Activity {
 					movie = data.get(position);
 					// new TMDBDetail().execute();
 
-					Intent intent = new Intent(Now_Viewing.this,
+					Intent intent = new Intent(TopRated.this,
 							Detailed_View.class);
 
 					// pass required data to detail_view
