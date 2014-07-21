@@ -11,7 +11,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.os.Build;
 
-import com.pranav.tmdb_api_movie.Display_With_Image.ImageDownloading;
 import com.pranav.tmdb_api_movie.R;
 
 import android.os.Bundle;

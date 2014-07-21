@@ -31,6 +31,11 @@ import com.pranav.tmdb_api_movie.R;
 import com.pranav.tmdb_api_movie.MovieResult.Builder;
 
 public class Now_Viewing extends Activity {
+	final String KEY_TITLE = "title";
+    final String KEY_YEAR = "Year";
+    final String KEY_RATING = "Rating";
+    final String KEY_THUMB_URL = "thumb_url";
+    final String KEY_ID = "id";
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
